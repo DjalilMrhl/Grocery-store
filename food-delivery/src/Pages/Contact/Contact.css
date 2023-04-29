@@ -1,0 +1,41 @@
+.contact {
+  width: 100%;
+  padding: 1rem 0;
+}
+.contact > h1 {
+  display: block;
+  font-size: clamp(3rem, 6vw, 6rem);
+  letter-spacing: 5px;
+  margin-bottom: 1rem;
+  width: 100%;
+  height: 50vw;
+  background-image: url("../../assets/about2.jpg");
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.contact--container {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+.contact--container form {
+  width: min(100%, 90rem);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.contact--container form > * {
+  padding: 1rem;
+  border-radius: 5px;
+  outline: 0;
+  border: 1px solid var(--clr-green-400);
+}
+.contact--container form button {
+  background-color: var(--clr-green-500);
+  color: #fff;
+}/*# sourceMappingURL=Contact.css.map */

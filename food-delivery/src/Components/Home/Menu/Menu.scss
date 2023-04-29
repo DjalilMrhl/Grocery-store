@@ -1,0 +1,102 @@
+.menu {
+    width: 100%;
+    padding: 2rem 1rem;
+    &--container {
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 20rem 1fr 1fr;
+        aside {
+            display: flex;
+            flex-direction: column;
+            @media screen and (max-width: 790px) {
+                grid-column: 1/-1;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 0.5rem;
+                > * {
+                    width: 18rem;
+                }
+            }
+            @media screen and (max-width: 569px) {
+                justify-content: center;
+            }
+            > * {
+                padding: 1rem;
+                border: 1px solid slategray;
+                border-radius: 5px;
+                background-color: transparent;
+                margin-bottom: 10px;
+                color: inherit;
+                transition: 0.4s;
+                &:hover {
+                    background-color: #48ff79;
+                    color: #fff;
+                    border-color: transparent;
+                }
+                &:first-child {
+                    border: none;
+                    text-align: center;
+                }
+            }
+        }
+        h3 {
+            font-size: 2rem;
+            text-align: center;
+            grid-column: 1/-1;
+            margin-bottom: 1rem;
+        }
+        .cards {
+            grid-column: 2/-1;
+            max-height: 478px;
+            overflow-y: scroll;
+            margin: 1rem 0 0 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            @media screen and (max-width: 790px) {
+                grid-column: 1/-1;
+                justify-content: space-around;
+            }
+            .card {
+                text-align: center;
+                width: 18rem;
+                position: relative;
+                img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: contain;
+                    transition: 0.3s;
+                    &:hover {
+                        transform: scale(1.1) translateY(-10%);
+                    }
+                }
+                p span {
+                    margin: 0.5rem;
+                    &:last-child {
+                        color: slategray;
+                        text-decoration: line-through;
+                    }
+                }
+                .icon {
+                    cursor: pointer;
+                    font-size: 2.2rem;
+                    position: absolute;
+                    bottom: 20%;
+                    right: 1rem;
+                    padding: 2px;
+                    color: var(--clr-green-400);
+                    border-radius: 50%;
+                    box-shadow: 0 0 5px slategray;
+                    z-index: 10;
+                    transition: 0.3s;
+                    &:hover {
+                        box-shadow: 0 0 5px 2px var(--clr-green-500);
+                    }
+                }
+            }
+        }
+    }
+}

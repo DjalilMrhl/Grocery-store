@@ -1,0 +1,33 @@
+.shipping {
+    width: min(100%, 80rem);
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 5px #00000086;
+    form {
+        width: min(100%, 70rem);
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        input {
+            padding: 1rem;
+            outline: 0;
+            &::placeholder {
+                color: slategray;
+            }
+        }
+        .btns {
+            display: flex;
+            column-gap: 1rem;
+            justify-content: space-between;
+            button {
+                padding: 1rem;
+                background-color: #2fad2f;
+                color: #fff;
+                width: min(100%, 30rem);
+                border: none;
+                border-radius: 5px;
+            }
+        }
+    }
+}

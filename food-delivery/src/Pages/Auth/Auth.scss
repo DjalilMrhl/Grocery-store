@@ -1,0 +1,48 @@
+.auth {
+    width: 100%;
+    min-height: calc(100% - 7rem);
+    padding: 1rem;
+    padding-top: 5rem;
+    background-image: url('../../assets/bg.jpeg');
+    background-size: cover;
+    &--container {
+        width: min(100%, 70rem);
+        margin: 0 auto;
+        padding: 1rem;
+        form {
+            width: 100%;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            input {
+                padding: 1rem;
+                border-radius: 5px;
+                border: 1px solid slategrey;
+                outline: 0;
+            }
+            button {
+                width: 20rem;
+                font-size: 2rem;
+                align-self: flex-start;
+                padding: 1rem;
+                color: #fff;
+                background-color: var(--clr-green-500);
+                border: none;
+                border-radius: 5px;
+            }
+            p:last-child {
+                padding-inline: .5rem;
+                align-self: flex-start;
+                border-radius: 5px;
+                background-color: var(--clr-green-400);
+                font-size: clamp(1.5rem, 3vw, 2rem);
+                color: #62ff00;
+                a {
+                    margin-left: 1rem;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

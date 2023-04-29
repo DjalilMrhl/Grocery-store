@@ -1,0 +1,41 @@
+.payment {
+  width: min(100%, 70rem);
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5254901961);
+}
+.payment h3 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: #3ae137;
+}
+.payment > div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.payment > div:first-of-type label {
+  width: 100%;
+}
+.payment > div:first-of-type label input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #000;
+  outline: 0;
+}
+.payment .btns {
+  display: flex;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+.payment .btns button {
+  padding: 1rem;
+  background-color: #2fad2f;
+  color: #fff;
+  width: 50%;
+  margin: 1rem auto 0;
+  border: none;
+  border-radius: 5px;
+}/*# sourceMappingURL=Payment.css.map */

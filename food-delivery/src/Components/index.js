@@ -1,0 +1,9 @@
+export { default as Register } from "./Auth/Register";
+export { default as Login } from "./Auth/Login";
+export { default as Banner } from "./Home/Banner/Banner";
+export { default as Menu } from "./Home/Menu/Menu";
+export { default as Categories } from "./Home/Categories/Categories";
+export { default as Payment } from "./Cart/Payment/Payment";
+export { default as CartItems } from "./Cart/CartItems/CartItems";
+export { default as Shipping } from "./Cart/Shipping/Shipping";
+export { default as Checkout } from "./Cart/Checkout/Checkout";

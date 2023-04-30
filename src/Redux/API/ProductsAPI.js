@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const productsAPI = createApi({
     reducerPath: "products",
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:1337/api'}),
+    baseQuery: fetchBaseQuery({baseUrl: `${process.env.BACKEND_URL}/api`}),
     endpoints: builder => ({
         getAllProducts: builder.query({
             query: () => 'products?populate=image'

@@ -17,7 +17,7 @@ function Payment() {
       shippingDetails: {...form},
       products: cartItems.map(({id, cartQuantity})=> ({id, cartQuantity})),
     }
-    const {id} = axios.post("https://grocer-store.netlify.app/api/orders", requestBody)
+    const {id} = axios.post("https://strapi-kp0a.onrender.com/api/orders", requestBody)
     stripe.redirectToCheckout({
       sessionId: id
     })

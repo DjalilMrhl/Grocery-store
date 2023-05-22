@@ -50,7 +50,7 @@ function Product() {
   }, [])
   
 
-  const {id} = useParams()
+  const params.id = useParams()
   const [Show, setShow] = useState(false);
   const [active, setActive] = useState(true)
   const [newReview, setNewReview] = useState({
@@ -69,9 +69,8 @@ function Product() {
   
   const dispatch = useDispatch()
 
-  const product = products.filter(item=> item.id === id)
-  console.log("🚀 ~ file: Product?.js:71 ~ Product ~ product:", product)
-  const category = products.filter(item=> item.category === product?.category)
+  const product = products.filter(item=> item.id === params.id)
+  const category = products.filter(item=> item.category === product.category)
   
   const handleChange = (e)=> {
     setNewReview(prev=> {

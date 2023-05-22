@@ -81,8 +81,7 @@ function Product() {
     if(newReview.rating !==0) {
       reviews.unshift(newReview)
       localStorage.setItem('reviews', JSON.stringify(reviews))
-    } else {
-      e.preventDefault()
+      window.location.reload()
     }
   }
   

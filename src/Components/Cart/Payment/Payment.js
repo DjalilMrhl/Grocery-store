@@ -6,24 +6,16 @@ import { Color, ShippingForm } from "../../../Context/context";
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 
-const stripePromise = loadStripe("pk_test_51MtWkhBx5TEHq8kdA9k3PEeq0HYl7R0FovVIPQisKQkkolftDlWp8LijISiLesoWTC9s0k5yDN90UEasbf0bU2cp000XV2XJYL")
-
 function Payment() {
 
   const cartItems = useSelector(state=> state.cart.cartItems)
-  const makePayment= async(e)=> {
-    const stripe = await stripePromise
-    const requestBody = {
-      shippingDetails: {...form},
-      products: cartItems.map(({id, cartQuantity})=> ({id, cartQuantity})),
-    }
-    const {id} = axios.post("https://strapi-kp0a.onrender.com/api/orders", requestBody)
-    stripe.redirectToCheckout({
-      sessionId: id
-    })
-  }
   const {form, setForm} = useContext(ShippingForm)
   const {setActive} = useContext(Color)
+  
+  const navigate = useNavigate()
+  const makePayment = ()=> {
+     navigate("/cart/ckeckout/confirmation")
+  }
 
   const handleChange = (e)=> {
     setForm(prev=> {
@@ -31,7 +23,6 @@ function Payment() {
     })
   }
 
-  const navigate = useNavigate()
   const handleClickBack = ()=> {
     navigate("/cart/shipping")
     setActive(2)

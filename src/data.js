@@ -4,7 +4,7 @@ import salmon from './assets/salmon.jpg'
 import mollusk from './assets/Mollusk.png'
 import beetroot from './assets/beetroot.jpg'
 import asparagus from './assets/Asparagus.jpg'
-import shark from './assets/shark.jpg'
+import shark from './assets/Shark.jpg'
 import octopus from './assets/octopus.png'
 import banana from './assets/banana.png'
 

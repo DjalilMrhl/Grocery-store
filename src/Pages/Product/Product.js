@@ -1,6 +1,6 @@
 import "./Product.scss";
 import React, { useContext, useState, useEffect} from "react";
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { TiStarFullOutline } from 'react-icons/ti'
 import ReactStars from "react-rating-stars-component";
@@ -53,7 +53,7 @@ function Product() {
     let params = window.location.href.slice(-1)
     setProduct(products.filter(item=> item.id === params))
     setCategory(products.filter(item=> item.category === product.category))
-  }, [product.category, params.id])
+  }, [product.category, params])
   
 
   const [Show, setShow] = useState(false);

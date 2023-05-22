@@ -18,14 +18,14 @@ const cartSlice = createSlice({
             localStorage.setItem('cartItems',JSON.stringify(state.cartItems))
             state.cartTotalQuantity ++
             localStorage.setItem('cartTotalQuantity',JSON.stringify(state.cartTotalQuantity))
-            state.cartTotalPrice += action.payload.attributes.price
+            state.cartTotalPrice += action.payload.price
             localStorage.setItem('cartTotalPrice',JSON.stringify(state.cartTotalPrice))
         } else if (index >= 0) {
             state.cartItems[index].cartQuantity++
             localStorage.setItem('cartItems',JSON.stringify(state.cartItems))
             state.cartTotalQuantity ++
             localStorage.setItem('cartTotalQuantity',JSON.stringify(state.cartTotalQuantity))
-            state.cartTotalPrice += state.cartItems[index].attributes.price
+            state.cartTotalPrice += state.cartItems[index].price
             localStorage.setItem('cartTotalPrice',JSON.stringify(state.cartTotalPrice))
         }
     },
@@ -35,7 +35,7 @@ const cartSlice = createSlice({
         localStorage.setItem('cartItems',JSON.stringify(state.cartItems))
         state.cartTotalQuantity -= action.payload.cartQuantity
         localStorage.setItem('cartTotalQuantity',JSON.stringify(state.cartTotalQuantity))
-        state.cartTotalPrice = state.cartTotalPrice - (action.payload.cartQuantity * action.payload.attributes.price)
+        state.cartTotalPrice = state.cartTotalPrice - (action.payload.cartQuantity * action.payload.price)
         localStorage.setItem('cartTotalPrice',JSON.stringify(state.cartTotalPrice))
     },
     increaseQuantity: (state, action) => {
@@ -44,7 +44,7 @@ const cartSlice = createSlice({
         localStorage.setItem('cartItems',JSON.stringify(state.cartItems))
         state.cartTotalQuantity++
         localStorage.setItem('cartTotalQuantity',JSON.stringify(state.cartTotalQuantity))
-        state.cartTotalPrice += state.cartItems[index].attributes.price
+        state.cartTotalPrice += state.cartItems[index].price
         localStorage.setItem('cartTotalPrice',JSON.stringify(state.cartTotalPrice))
     },
     decreaseQuantity: (state, action) => {
@@ -53,7 +53,7 @@ const cartSlice = createSlice({
         localStorage.setItem('cartItems',JSON.stringify(state.cartItems))
         state.cartTotalQuantity--
         localStorage.setItem('cartTotalQuantity',JSON.stringify(state.cartTotalQuantity))
-        state.cartTotalPrice -= state.cartItems[index].attributes.price
+        state.cartTotalPrice -= state.cartItems[index].price
         localStorage.setItem('cartTotalPrice',JSON.stringify(state.cartTotalPrice))
 
     },

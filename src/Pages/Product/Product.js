@@ -42,11 +42,11 @@ function Product() {
       breakpoint: { max: 400, min: 0 },
       items: 1
     }
-  };
+  }
   
+  const params = useParams()
   const [product, setProduct] = useState({});
   const [category, setCategory] = useState([])
-  const params = useParams()
   useEffect(() => {
     window.scrollTo(0,0)
     setActive(1)  

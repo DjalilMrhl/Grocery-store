@@ -5,15 +5,14 @@ import { Dropdown } from "react-bootstrap";
 import { FaCartPlus, FaUserAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {data} from "./../../../data.js"
 
 function NavBar() {
 
   const [menu, setMenu] = useState(false)
   const navigate = useNavigate()
-  const { data = [] } = useGetAllProductsQuery();
-  const { data: products = [] } = data;
   console.log("🚀 ~ file: NavBar.js:15 ~ NavBar ~ data:", data)
-  const categories = [...new Set(products.map(item=> item.attributes.category))]
+  const categories = [...new Set(products.map(item=> item.category))]
   
   
   const cartTotalQuantity = useSelector(state=> state.cart.cartTotalQuantity)

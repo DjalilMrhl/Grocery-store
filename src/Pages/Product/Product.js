@@ -115,8 +115,8 @@ function Product() {
         <div className="product--content">
           <img src={product.thumbnail} alt="" />
           <div className="details">
-            <h2>{product?.title}</h2>
-            <p>$ {product?.price}</p>
+            <h2>{product.title}</h2>
+            <p>$ {product.price}</p>
             <div className="cta">
               <button onClick={handleAddToCart}>Add to cart</button>
               <button onClick={handleBuyNow}>Buy now</button>

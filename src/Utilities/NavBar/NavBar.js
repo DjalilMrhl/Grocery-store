@@ -11,7 +11,6 @@ function NavBar() {
 
   const [menu, setMenu] = useState(false)
   const navigate = useNavigate()
-  console.log("🚀 ~ file: NavBar.js:15 ~ NavBar ~ data:", data)
   const categories = [...new Set(products.map(item=> item.category))]
   
   

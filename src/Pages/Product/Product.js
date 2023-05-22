@@ -50,7 +50,7 @@ function Product() {
   }, [])
   
 
-  const params.id = useParams()
+  const params = useParams()
   const [Show, setShow] = useState(false);
   const [active, setActive] = useState(true)
   const [newReview, setNewReview] = useState({

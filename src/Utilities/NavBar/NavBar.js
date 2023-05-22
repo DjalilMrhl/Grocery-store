@@ -4,7 +4,6 @@ import logo from "../../assets/logo.png";
 import { Dropdown } from "react-bootstrap";
 import { FaCartPlus, FaUserAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useGetAllProductsQuery } from "../../Redux/API/ProductsAPI";
 import { useSelector } from "react-redux";
 
 function NavBar() {

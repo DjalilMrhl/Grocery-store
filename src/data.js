@@ -11,6 +11,7 @@ import banana from './assets/banana.png'
 
 export const data = [
     {
+        id: 1,
         title: 'Avocado',
         description: 'The avocado (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 2.5,
@@ -19,6 +20,7 @@ export const data = [
         thumbnail: avocado
     },
     {
+        id: 2,
         title: 'Orange',
         description: 'The avocado (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 2.79,
@@ -27,6 +29,7 @@ export const data = [
         thumbnail: orange
     },
     {
+        id: 3,
         title: 'Beetroot',
         description: 'The avocado (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 3.59,
@@ -35,6 +38,7 @@ export const data = [
         thumbnail: beetroot
     },
     {
+        id: 4,
         title: 'Salmon',
         description: 'The avocado (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 4.69,
@@ -43,6 +47,7 @@ export const data = [
         thumbnail: salmon
     },
     {
+        id: 5,
         title: 'Asparagus',
         description: 'The Asparagus (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 2.79,
@@ -51,6 +56,7 @@ export const data = [
         thumbnail: asparagus
     },
     {
+        id: 6,
         title: 'Banana',
         description: 'The Banana (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 3.79,
@@ -59,6 +65,7 @@ export const data = [
         thumbnail: banana
     },
     {
+        id: 7,
         title: 'Mollusk',
         description: 'The Mollusk (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 2.79,
@@ -67,6 +74,7 @@ export const data = [
         thumbnail: mollusk
     },
     {
+        id: 8,
         title: 'Octopus',
         description: 'The Octopus (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 2.79,
@@ -75,6 +83,7 @@ export const data = [
         thumbnail: octopus
     },
     {
+        id: 9,
         title: 'Shark',
         description: 'The Shark (Persea americana) is a medium-sized, evergreen tree in the laurel family (Lauraceae). It is native to the Americas and was first domesticated ...',
         price: 2.79,

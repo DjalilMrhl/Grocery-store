@@ -8,8 +8,8 @@ import { BiShow } from "react-icons/bi";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { addToCart } from '../../Redux/Slices/cartSlice'
-import { useGetAllProductsQuery, useGetProductQuery } from '../../Redux/API/ProductsAPI'
 import { Color } from "../../Context/context";
+import {data as products} from './../../data'
 
 
 function Product() {
@@ -69,12 +69,9 @@ function Product() {
   
   const dispatch = useDispatch()
 
-  const {data = {}} = useGetAllProductsQuery()
-  const {data: products = []} = data
-  const {data: productData = {}} = useGetProductQuery(id)
-  const {data: product = {}} = productData
+  const product = products.filter(item=> item.id === id)
   console.log("🚀 ~ file: Product?.js:71 ~ Product ~ product:", product)
-  const category = products.filter(item=> item.attributes?.category === product?.attributes?.category)
+  const category = products.filter(item=> item.category === product?.category)
   
   const handleChange = (e)=> {
     setNewReview(prev=> {
@@ -118,10 +115,10 @@ function Product() {
       <button onClick={()=> navigate('/')}>&#8592; Go Back</button>
       <div className="product--container">
         <div className="product--content">
-          <img src={`http://localhost:1337${product?.attributes?.image?.data?.attributes?.formats?.small?.url}`} alt="" />
+          <img src={product.thumbnail} alt="" />
           <div className="details">
-            <h2>{product?.attributes?.title}</h2>
-            <p>$ {product?.attributes?.price}</p>
+            <h2>{product?.title}</h2>
+            <p>$ {product?.price}</p>
             <div className="cta">
               <button onClick={handleAddToCart}>Add to cart</button>
               <button onClick={handleBuyNow}>Buy now</button>
@@ -134,7 +131,7 @@ function Product() {
             <button className={active===2?'color': undefined} onClick={handleClick2}>Reviews</button>
           </div>
           {!Show ? (
-            <p>{product?.attributes?.description}</p>
+            <p>{product?.description}</p>
           ) : (
             <div className="review-section">
               <form onSubmit={handleSubmit}>
@@ -164,12 +161,12 @@ function Product() {
               <Carousel responsive={responsive} autoPlay={true}>
               {category.map(item =>
                 <div className="product" key={item.id}>
-                    <img src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`} alt="" onClick={()=>{window.scrollTo(0,0)
+                    <img src={item.thumbnail} alt="" onClick={()=>{window.scrollTo(0,0)
                     navigate(`/products/${item.id}`)}}/>
-                    <h5>{item.attributes?.title}</h5>
-                    <span>$ {item.attributes?.price}</span>
-                    <p>{item.attributes?.description}</p>
-                    <p>{item.attributes?.category}</p>
+                    <h5>{item.title}</h5>
+                    <span>$ {item.price}</span>
+                    <p>{item.description}</p>
+                    <p>{item.category}</p>
                     <BiShow className="icon" onClick={()=>{
                       window.scrollTo(0,0)
                        navigate(`/products/${item.id}`)}}/>
@@ -181,12 +178,12 @@ function Product() {
               <Carousel responsive={responsive} autoPlay={true}>
               {products.map(item =>
                 <div className="product" key={item.id}>
-                    <img src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`} alt="" onClick={()=>{ window.scrollTo(0,0)
+                    <img src={item.thumbnail} alt="" onClick={()=>{ window.scrollTo(0,0)
                        navigate(`/products/${item.id}`)}}/>
-                    <h5>{item.attributes?.title}</h5>
-                    <span>$ {item.attributes?.price}</span>
-                    <p>{item.attributes?.description}</p>
-                    <p>{item.attributes?.category}</p>
+                    <h5>{item.title}</h5>
+                    <span>$ {item.price}</span>
+                    <p>{item.description}</p>
+                    <p>{item.category}</p>
                     <BiShow className="icon" onClick={()=>{
                       window.scrollTo(0,0)
                        navigate(`/products/${item.id}`)}}/>

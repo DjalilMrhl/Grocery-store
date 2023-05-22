@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import "./Payment.scss";
-import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Color, ShippingForm } from "../../../Context/context";
+import { Color } from "../../../Context/context";
 
 function Payment() {
 

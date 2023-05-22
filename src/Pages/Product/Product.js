@@ -52,7 +52,7 @@ function Product() {
     setActive(1)  
     setProduct(products.filter(item=> item.id === params.id))
     setCategory(products.filter(item=> item.category === product.category))
-  }, [products])
+  }, [product.category, params.id])
   
 
   const [Show, setShow] = useState(false);

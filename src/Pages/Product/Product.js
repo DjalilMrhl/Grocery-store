@@ -43,14 +43,18 @@ function Product() {
       items: 1
     }
   };
-
+  
+  const [product, setProduct] = useState({});
+  const [category, setCategory] = useState([])
+  const params = useParams()
   useEffect(() => {
     window.scrollTo(0,0)
-    setActive(1)
-  }, [])
+    setActive(1)  
+    setProduct(products.filter(item=> item.id === params.id))
+    setCategory(products.filter(item=> item.category === product.category))
+  }, [products])
   
 
-  const params = useParams()
   const [Show, setShow] = useState(false);
   const [active, setActive] = useState(true)
   const [newReview, setNewReview] = useState({
@@ -68,9 +72,6 @@ function Product() {
   };
   
   const dispatch = useDispatch()
-
-  const product = products.filter(item=> item.id === params.id)
-  const category = products.filter(item=> item.category === product.category)
   
   const handleChange = (e)=> {
     setNewReview(prev=> {

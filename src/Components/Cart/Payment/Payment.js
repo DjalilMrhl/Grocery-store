@@ -3,7 +3,6 @@ import "./Payment.scss";
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Color, ShippingForm } from "../../../Context/context";
-import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 
 function Payment() {
@@ -14,7 +13,7 @@ function Payment() {
   
   const navigate = useNavigate()
   const makePayment = ()=> {
-     navigate("/cart/ckeckout/confirmation")
+     navigate("/cart/confirmation")
   }
 
   const handleChange = (e)=> {

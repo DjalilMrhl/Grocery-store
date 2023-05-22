@@ -43,14 +43,15 @@ function Product() {
       items: 1
     }
   }
-  
-  const params = useParams()
-  const [product, setProduct] = useState({});
-  const [category, setCategory] = useState([])
   useEffect(() => {
     window.scrollTo(0,0)
     setActive(1)  
-    setProduct(products.filter(item=> item.id === params.id))
+  }, [])
+  const [product, setProduct] = useState({});
+  const [category, setCategory] = useState([])
+  useEffect(() => {
+    let params = window.location.href.slice(-1)
+    setProduct(products.filter(item=> item.id === params))
     setCategory(products.filter(item=> item.category === product.category))
   }, [product.category, params.id])
   

@@ -53,7 +53,7 @@ function Product() {
     let params = window.location.href.slice(-1)
     setProduct(products.filter(item=> item.id === params))
     setCategory(products.filter(item=> item.category === product.category))
-  }, [product.category, params])
+  }, [product.category])
   
 
   const [Show, setShow] = useState(false);

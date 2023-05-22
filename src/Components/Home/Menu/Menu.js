@@ -2,7 +2,7 @@ import './Menu.scss'
 import React, { useState } from 'react'
 import { BiShow } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
-import {data as products} from './../../../data'
+import {data as products} from './../../../data.js'
 
 
 function Menu() {

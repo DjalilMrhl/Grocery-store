@@ -1,13 +1,11 @@
 import "./Product.scss";
 import React, { useContext, useState, useEffect} from "react";
 import { useNavigate, useParams } from 'react-router'
-import { useDispatch } from 'react-redux'
 import { TiStarFullOutline } from 'react-icons/ti'
 import ReactStars from "react-rating-stars-component";
 import { BiShow } from "react-icons/bi";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { addToCart } from '../../Redux/Slices/cartSlice'
 import { Color, CartContext } from "../../Context/context";
 import {data as products} from './../../data'
 
@@ -52,8 +50,6 @@ function Product() {
     window.scrollTo(0,0)
     setActive(1)
   }, [])
-
-  
 
   const [Show, setShow] = useState(false);
   const [active, setActive] = useState(true)

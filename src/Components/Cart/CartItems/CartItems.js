@@ -2,16 +2,12 @@ import React, { useContext } from "react";
 import "./CartItems.scss";
 import { FaMinusSquare, FaPlusSquare } from 'react-icons/fa'
 import { BsTrash } from 'react-icons/bs'
-import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, increaseQuantity, removefromCart } from "../../../Redux/Slices/cartSlice";
-import { Color } from '../../../Context/context'
+import { CartContext, Color } from '../../../Context/context'
 import { useNavigate } from "react-router";
 
 function CartItems() {
 
-    const cartItems = useSelector(state=> state.cart.cartItems)
-    const cartTotalPrice = useSelector(state=> state.cart.cartTotalPrice)
-    const dispatch = useDispatch()
+    const {cartItems, cartTotalPrice, increaseQuantity, decreaseQuantity, removefromCart} = useContext(CartContext)
     const {setActive} = useContext(Color)
     const handleClick = () => {
       setActive(2)
@@ -42,14 +38,14 @@ function CartItems() {
             </td>
             <td>
               <div className="quantity">
-                <FaPlusSquare onClick={() => dispatch(increaseQuantity(item))} />
-                <span>{item.cartQuantity}</span>
-                <FaMinusSquare onClick={() => item.cartQuantity > 1 && dispatch(decreaseQuantity(item))} />
+                <FaPlusSquare onClick={() => increaseQuantity(item)} />
+                <span>{item?.cartQuantity}</span>
+                <FaMinusSquare onClick={() => item?.cartQuantity > 1 && decreaseQuantity(item)} />
               </div>
             </td>
             <td>$ {item?.price}</td>
-            <td>{(item?.price * item.cartQuantity).toFixed(2)}</td>
-            <td><BsTrash onClick={()=> dispatch(removefromCart(item))} /></td>
+            <td>{(item?.price * item?.cartQuantity).toFixed(2)}</td>
+            <td><BsTrash onClick={()=> removefromCart(item)} /></td>
           </tr>
         ))}
         </tbody>

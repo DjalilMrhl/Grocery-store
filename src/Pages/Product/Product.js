@@ -8,7 +8,7 @@ import { BiShow } from "react-icons/bi";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { addToCart } from '../../Redux/Slices/cartSlice'
-import { Color } from "../../Context/context";
+import { Color, CartContext } from "../../Context/context";
 import {data as products} from './../../data'
 
 
@@ -45,6 +45,7 @@ function Product() {
   }
   const {id} = useParams()
 
+  const {addToCart} = useContext(CartContext)
   const  product = products.filter(item => item?.id === parseInt(id))
   const  category = products.filter(item => item?.category === product?.category)
   useEffect(() => {
@@ -70,7 +71,6 @@ function Product() {
     });
   };
   
-  const dispatch = useDispatch()
   
   const handleChange = (e)=> {
     setNewReview(prev=> {
@@ -97,12 +97,12 @@ function Product() {
   const navigate = useNavigate()
   const {setActive: setActiveL} = useContext(Color)
   const handleAddToCart = () => {
-    dispatch(addToCart(product))
+    addToCart(product)
     setActiveL(1)
     navigate('/cart')
   }
   const handleBuyNow = () => {
-    dispatch(addToCart(product))
+    addToCart(product)
     setActiveL(2)
     navigate('/cart/shipping')
     window.scrollTo(0,250)
@@ -184,7 +184,7 @@ function Product() {
                     <p>{item?.category}</p>
                     <BiShow className="icon" onClick={()=>{
                       window.scrollTo(0,0)
-                       navigate(`/products/${item?.id}`)}}/>
+                      navigate(`/products/${item?.id}`)}}/>
                 </div>)}
               </Carousel>
             </div>

@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import "./Payment.scss";
 import { useNavigate } from 'react-router-dom'
-import { Color } from "../../../Context/context";
-import { useDispatch } from "react-redux";
-import { clearCart } from "../../../Redux/Slices/cartSlice";
+import { Color, CartContext } from "../../../Context/context";
+
 
 function Payment() {
 
-  const dispatch = useDispatch()
   const {setActive} = useContext(Color)
-  
+  const {clearCart} = useContext(CartContext)
+
   const navigate = useNavigate()
   const makePayment = ()=> {
      navigate("/cart/confirmation")
-     dispatch(clearCart)
+     clearCart()
   }
   const handleClickBack = ()=> {
     navigate("/cart/shipping")

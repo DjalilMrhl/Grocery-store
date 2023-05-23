@@ -4,7 +4,6 @@ import logo from "../../assets/logo.png";
 import { Dropdown } from "react-bootstrap";
 import { FaCartPlus, FaUserAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import {data as products} from "./../../data.js"
 
 function NavBar() {
@@ -14,8 +13,8 @@ function NavBar() {
   const categories = [...new Set(products.map(item=> item.category))]
   
   
-  const cartTotalQuantity = useSelector(state=> state.cart.cartTotalQuantity)
-
+  const {cartTotalQuantity} = useContext(CartContext)
+  
   return (
     <nav className="nav">
       <div className="nav--container">

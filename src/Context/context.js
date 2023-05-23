@@ -12,7 +12,6 @@ function Context({children}) {
   const [cartTotalPrice, setCartTotalPrice] = useState(JSON.parse(localStorage.getItem('cartTotalPrice')) || 0)
 
   const addToCart = (item) => {
-    setCartItems(prev=>[...prev, item]);
     const index = cartItems.findIndex(i => i.id === item.id)
         if (index === -1) {
             const tempProduct = {...item, cartQuantity: 1}

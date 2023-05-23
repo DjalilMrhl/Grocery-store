@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./NavBar.scss";
 import logo from "../../assets/logo.png";
 import { Dropdown } from "react-bootstrap";
 import { FaCartPlus, FaUserAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import {data as products} from "./../../data.js"
+import { CartContext } from "../../Context/context";
+
 
 function NavBar() {
 

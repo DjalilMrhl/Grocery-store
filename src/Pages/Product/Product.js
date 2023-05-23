@@ -1,6 +1,6 @@
 import "./Product.scss";
 import React, { useContext, useState, useEffect} from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { TiStarFullOutline } from 'react-icons/ti'
 import ReactStars from "react-rating-stars-component";
@@ -43,17 +43,15 @@ function Product() {
       items: 1
     }
   }
+  const {id} = useParams()
+
+  const  product = products.filter(item => item?.id === parseInt(id))
+  const  category = products.filter(item => item?.category === product?.category)
   useEffect(() => {
     window.scrollTo(0,0)
-    setActive(1)  
+    setActive(1)
   }, [])
-  const [product, setProduct] = useState({});
-  const [category, setCategory] = useState([])
-  useEffect(() => {
-    let params = window.location.href.slice(-1)
-    setProduct(products.filter(item=> item.id === params))
-    setCategory(products.filter(item=> item.category === product.category))
-  }, [product.category])
+
   
 
   const [Show, setShow] = useState(false);
@@ -115,10 +113,10 @@ function Product() {
       <button onClick={()=> navigate('/')}>&#8592; Go Back</button>
       <div className="product--container">
         <div className="product--content">
-          <img src={product.thumbnail} alt="" />
+          <img src={product?.thumbnail} alt="" />
           <div className="details">
-            <h2>{product.title}</h2>
-            <p>$ {product.price}</p>
+            <h2>{product?.title}</h2>
+            <p>$ {product?.price}</p>
             <div className="cta">
               <button onClick={handleAddToCart}>Add to cart</button>
               <button onClick={handleBuyNow}>Buy now</button>
@@ -146,11 +144,11 @@ function Product() {
                 <div className="reviews">
                     <h3>People reviews</h3>
                     <div className="list">
-                      {reviews.map(item => <div className="review" key={item.id}>
-                        <h5>{item.name}</h5>
-                        <span>{item.date}</span>
-                        <span className="stars">{item.rating === 1?<TiStarFullOutline/>:item.rating === 2?<><TiStarFullOutline /><TiStarFullOutline /></>:item.rating === 3?<><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /></>:item.rating === 4?<><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /></>:item.rating === 5?<><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /></>:null}</span>
-                        <p>{item.review}</p>
+                      {reviews.map(item => <div className="review" key={item?.id}>
+                        <h5>{item?.name}</h5>
+                        <span>{item?.date}</span>
+                        <span className="stars">{item?.rating === 1?<TiStarFullOutline/>:item?.rating === 2?<><TiStarFullOutline /><TiStarFullOutline /></>:item?.rating === 3?<><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /></>:item?.rating === 4?<><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /></>:item?.rating === 5?<><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /><TiStarFullOutline /></>:null}</span>
+                        <p>{item?.review}</p>
                       </div>)}
                     </div>
                   </div>
@@ -159,17 +157,17 @@ function Product() {
             <div className="realted-products">
               <h2>Related Products</h2>
               <Carousel responsive={responsive} autoPlay={true}>
-              {category.map(item =>
-                <div className="product" key={item.id}>
-                    <img src={item.thumbnail} alt="" onClick={()=>{window.scrollTo(0,0)
-                    navigate(`/products/${item.id}`)}}/>
-                    <h5>{item.title}</h5>
-                    <span>$ {item.price}</span>
-                    <p>{item.description}</p>
-                    <p>{item.category}</p>
+              {category?.map(item =>
+                <div className="product" key={item?.id}>
+                    <img src={item?.thumbnail} alt="" onClick={()=>{window.scrollTo(0,0)
+                    navigate(`/products/${item?.id}`)}}/>
+                    <h5>{item?.title}</h5>
+                    <span>$ {item?.price}</span>
+                    <p>{item?.description}</p>
+                    <p>{item?.category}</p>
                     <BiShow className="icon" onClick={()=>{
                       window.scrollTo(0,0)
-                       navigate(`/products/${item.id}`)}}/>
+                       navigate(`/products/${item?.id}`)}}/>
                 </div>)}
               </Carousel>
             </div>
@@ -177,16 +175,16 @@ function Product() {
               <h2>Explore more</h2>
               <Carousel responsive={responsive} autoPlay={true}>
               {products.map(item =>
-                <div className="product" key={item.id}>
-                    <img src={item.thumbnail} alt="" onClick={()=>{ window.scrollTo(0,0)
-                       navigate(`/products/${item.id}`)}}/>
-                    <h5>{item.title}</h5>
-                    <span>$ {item.price}</span>
-                    <p>{item.description}</p>
-                    <p>{item.category}</p>
+                <div className="product" key={item?.id}>
+                    <img src={item?.thumbnail} alt="" onClick={()=>{ window.scrollTo(0,0)
+                       navigate(`/products/${item?.id}`)}}/>
+                    <h5>{item?.title}</h5>
+                    <span>$ {item?.price}</span>
+                    <p>{item?.description}</p>
+                    <p>{item?.category}</p>
                     <BiShow className="icon" onClick={()=>{
                       window.scrollTo(0,0)
-                       navigate(`/products/${item.id}`)}}/>
+                       navigate(`/products/${item?.id}`)}}/>
                 </div>)}
               </Carousel>
             </div>

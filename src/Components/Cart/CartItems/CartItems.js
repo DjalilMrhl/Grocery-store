@@ -34,10 +34,10 @@ function CartItems() {
         {cartItems.map((item, index) => (
           <tr key={index}>
             <td>
-              <img src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.small?.url}`} alt="" />
+              <img src={item.thumbnail} alt="" />
               <div className="content">
-                <h5>{item.attributes.title}</h5>
-                <p>{item.attributes.description}</p>
+                <h5>{item.title}</h5>
+                <p>{item.description}</p>
               </div>
             </td>
             <td>
@@ -47,8 +47,8 @@ function CartItems() {
                 <FaMinusSquare onClick={() => item.cartQuantity > 1 && dispatch(decreaseQuantity(item))} />
               </div>
             </td>
-            <td>$ {item?.attributes?.price}</td>
-            <td>{(item?.attributes?.price * item.cartQuantity).toFixed(2)}</td>
+            <td>$ {item?.price}</td>
+            <td>{(item?.price * item.cartQuantity).toFixed(2)}</td>
             <td><BsTrash onClick={()=> dispatch(removefromCart(item))} /></td>
           </tr>
         ))}

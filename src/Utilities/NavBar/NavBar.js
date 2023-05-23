@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import "./NavBar.scss";
 import logo from "../../assets/logo.png";
 import { Dropdown } from "react-bootstrap";
@@ -13,7 +13,7 @@ function NavBar() {
   const navigate = useNavigate()
   const categories = [...new Set(products.map(item=> item.category))]
   
-  
+
   const {cartTotalQuantity} = useContext(CartContext)
 
   return (

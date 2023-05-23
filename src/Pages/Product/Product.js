@@ -1,18 +1,19 @@
 import "./Product.scss";
 import React, { useContext, useState, useEffect} from "react";
 import { useNavigate, useParams } from 'react-router'
-import { useDispatch } from 'react-redux'
 import { TiStarFullOutline } from 'react-icons/ti'
 import ReactStars from "react-rating-stars-component";
 import { BiShow } from "react-icons/bi";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { addToCart } from '../../Redux/Slices/cartSlice'
 import { Color, CartContext } from "../../Context/context";
 import {data as products} from './../../data'
 
 
 function Product() {
+
+  const [product, setProduct] = useState({})
+  const [category, setCategory] = useState([])
 
   const date = new Date();
   let day = date.getDate();
@@ -46,14 +47,14 @@ function Product() {
   const {id} = useParams()
 
   const {addToCart} = useContext(CartContext)
-  const  product = products.filter(item => item?.id === parseInt(id))
-  const  category = products.filter(item => item?.category === product?.category)
+  useEffect(() => {
+    setProduct(products.filter(item => item.id === id))
+    setCategory(products.filter(item => item?.category === product?.category))
+  }, [id, product?.category])
   useEffect(() => {
     window.scrollTo(0,0)
     setActive(1)
   }, [])
-
-  
 
   const [Show, setShow] = useState(false);
   const [active, setActive] = useState(true)

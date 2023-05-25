@@ -1,6 +1,6 @@
 import "./Product.scss";
-import React, { useContext, useState, useEffect} from "react";
-import { useNavigate, useParams } from 'react-router'
+import React, { useContext, useState, useEffect, useMemo} from "react";
+import { useNavigate } from 'react-router'
 import { TiStarFullOutline } from 'react-icons/ti'
 import ReactStars from "react-rating-stars-component";
 import { BiShow } from "react-icons/bi";
@@ -12,7 +12,6 @@ import {data as products} from './../../data'
 
 function Product() {
 
-  const [product, setProduct] = useState({})
   const [category, setCategory] = useState([])
 
   const date = new Date();
@@ -21,7 +20,7 @@ function Product() {
   let year = date.getFullYear();
   let currentDate = `${day}-${month}-${year}`;
 
-  const reviews = localStorage.getItem('reviews')?JSON.parse(localStorage.getItem('reviews')): [ { id: 1, name: 'John Marston', date: '29-3-2023', review: `harum in. Laborum ratione, voluptas a accusamus sapiente reprehenderit pariatur sit! Magni facilis incidunt eaque vero! Quasi`, rating: 4 }, { id: 2, name: 'Adam Smith', date: '01-5-2023', review: `maiores provident voluptates quam dolorem accusantium itaque fugit blanditiis modi perspiciatis officia commodi totam adipisci`, rating: 5 }, { id: 3, name: 'John Doe', date: '02-4-2023', review: `nderit, cum nihil dolor aperiam accusamus eos ea voluptatibus. Repellat, repudiandae!Eius veritatis accusamus iusto ducimus harum in. Laborum ratione, voluptas a accusamus sapiente reprehenderit pariatur sit! Magni facilis incidunt eaque vero! Quasi repatione`, rating: 1 }, { id: 4, name: 'Marshall', date: '02-5-2023', review: `itaque fugit blanditiis modi perspiciatis officia commodi totam adipisci optio magni exercitationem voluptatibus natus. Earum?epudiandae!Eius veritatis accusamus iusto ducimus harum in. Laborum ratione`, rating: 4 }, { id: 5, name: 'Harry Potter', date: '12-4-2023', review: `ui, voluptatem deleniti temporibus hic? Adipisci nobis temporibus ducimus, minus doloribus provident, rem modi consequuntur est architecto aspernatur magni.Alias, distinctio molestias eligen`, rating: 3},{ id: 6, name: 'Jack daniel', date: '12-4-2023', review: `llat, repudiandae!Eius veritatis accusamus iusto ducimus harum in. Laborum ratione, voluptas a accusamus sapiente reprehenderit pariatur sit! Magni facilis incidunt eaque vero! Quasi repellendus alias dicta`, rating: 5}]
+  const reviews = useMemo(() => localStorage.getItem('reviews')?JSON.parse(localStorage.getItem('reviews')): [ { id: 1, name: 'John Marston', date: '29-3-2023', review: `harum in. Laborum ratione, voluptas a accusamus sapiente reprehenderit pariatur sit! Magni facilis incidunt eaque vero! Quasi`, rating: 4 }, { id: 2, name: 'Adam Smith', date: '01-5-2023', review: `maiores provident voluptates quam dolorem accusantium itaque fugit blanditiis modi perspiciatis officia commodi totam adipisci`, rating: 5 }, { id: 3, name: 'John Doe', date: '02-4-2023', review: `nderit, cum nihil dolor aperiam accusamus eos ea voluptatibus. Repellat, repudiandae!Eius veritatis accusamus iusto ducimus harum in. Laborum ratione, voluptas a accusamus sapiente reprehenderit pariatur sit! Magni facilis incidunt eaque vero! Quasi repatione`, rating: 1 }, { id: 4, name: 'Marshall', date: '02-5-2023', review: `itaque fugit blanditiis modi perspiciatis officia commodi totam adipisci optio magni exercitationem voluptatibus natus. Earum?epudiandae!Eius veritatis accusamus iusto ducimus harum in. Laborum ratione`, rating: 4 }, { id: 5, name: 'Harry Potter', date: '12-4-2023', review: `ui, voluptatem deleniti temporibus hic? Adipisci nobis temporibus ducimus, minus doloribus provident, rem modi consequuntur est architecto aspernatur magni.Alias, distinctio molestias eligen`, rating: 3},{ id: 6, name: 'Jack daniel', date: '12-4-2023', review: `llat, repudiandae!Eius veritatis accusamus iusto ducimus harum in. Laborum ratione, voluptas a accusamus sapiente reprehenderit pariatur sit! Magni facilis incidunt eaque vero! Quasi repellendus alias dicta`, rating: 5}], [])
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 2000 },
@@ -44,13 +43,11 @@ function Product() {
       items: 1
     }
   }
-  const {id} = useParams()
 
-  const {addToCart} = useContext(CartContext)
+  const {addToCart, product, setProduct} = useContext(CartContext)
   useEffect(() => {
-    setProduct(products.filter(item => item.id === id))
     setCategory(products.filter(item => item?.category === product?.category))
-  }, [id, product?.category])
+  }, [product?.category])
   useEffect(() => {
     window.scrollTo(0,0)
     setActive(1)
@@ -78,13 +75,19 @@ function Product() {
       return {...prev, [e.target.name]: e.target.value}
     })
   }
+  let flag = false
   const handleSubmit = (e)=> {
     if(newReview.rating !==0) {
-      reviews.unshift(newReview)
-      localStorage.setItem('reviews', JSON.stringify(reviews))
-      window.location.reload()
+      flag = true
+      e.preventDefault()
     }
   }
+  useEffect(() => {
+    if (flag) {
+      reviews.unshift(newReview)
+      localStorage.setItem('reviews', JSON.stringify(reviews))
+    }
+  }, [flag, reviews, newReview])
   
   const handleClick1 = ()=> {
     setShow(false)
@@ -160,15 +163,21 @@ function Product() {
               <Carousel responsive={responsive} autoPlay={true}>
               {category?.map(item =>
                 <div className="product" key={item?.id}>
-                    <img src={item?.thumbnail} alt="" onClick={()=>{window.scrollTo(0,0)
-                    navigate(`/products/${item?.id}`)}}/>
+                    <img src={item?.thumbnail} alt="" onClick={()=>{
+                      setProduct(item)
+                      localStorage.setItem('product',JSON.stringify(item))
+                      window.scrollTo(0,0)
+                      navigate(`/products/${item?.id}`)}}/>
                     <h5>{item?.title}</h5>
                     <span>$ {item?.price}</span>
                     <p>{item?.description}</p>
                     <p>{item?.category}</p>
                     <BiShow className="icon" onClick={()=>{
+                      setProduct(item)
+                      localStorage.setItem('product',JSON.stringify(item))
                       window.scrollTo(0,0)
-                       navigate(`/products/${item?.id}`)}}/>
+                      navigate(`/products/${item?.id}`)
+                      }}/>
                 </div>)}
               </Carousel>
             </div>
@@ -177,15 +186,21 @@ function Product() {
               <Carousel responsive={responsive} autoPlay={true}>
               {products.map(item =>
                 <div className="product" key={item?.id}>
-                    <img src={item?.thumbnail} alt="" onClick={()=>{ window.scrollTo(0,0)
-                       navigate(`/products/${item?.id}`)}}/>
+                    <img src={item?.thumbnail} alt="" onClick={()=>{
+                        setProduct(item)
+                        localStorage.setItem('product',JSON.stringify(item))
+                        window.scrollTo(0,0)
+                        navigate(`/products/${item?.id}`)}}/>
                     <h5>{item?.title}</h5>
                     <span>$ {item?.price}</span>
                     <p>{item?.description}</p>
                     <p>{item?.category}</p>
                     <BiShow className="icon" onClick={()=>{
+                      setProduct(item)
+                      localStorage.setItem('product',JSON.stringify(item))
                       window.scrollTo(0,0)
-                      navigate(`/products/${item?.id}`)}}/>
+                      navigate(`/products/${item?.id}`)
+                      }}/>
                 </div>)}
               </Carousel>
             </div>

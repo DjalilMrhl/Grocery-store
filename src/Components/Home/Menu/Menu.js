@@ -1,12 +1,14 @@
 import './Menu.scss'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { BiShow } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import {data as products} from './../../../data.js'
+import { CartContext } from '../../../Context/context'
 
 
 function Menu() {
 
+  const {setProduct} = useContext(CartContext)
   const [name, setName] = useState('All Products')
   const [category, setCategory] = useState([])
   const navigate = useNavigate()  
@@ -31,19 +33,35 @@ function Menu() {
             <div className="cards">
               {name==='All Products'?products.map(item =>
               <div className="card" key={item.id}>
-                <img src={item.thumbnail} alt="" onClick={()=> navigate(`/products/${item.id}`)}/>
+                <img src={item.thumbnail} alt="" onClick={()=> {
+                          navigate(`/products/${item.id}`)
+                          setProduct(item)
+                          localStorage.setItem('product',JSON.stringify(item))
+                        }}/>
                 <p>$ {item.price}</p>
                 <h5>{item.title}</h5>
                 <div className="icons">
-                <BiShow className="icon" onClick={()=> navigate(`/products/${item.id}`)}/>
+                <BiShow className="icon" onClick={()=> {
+                          navigate(`/products/${item.id}`)
+                          setProduct(item)
+                          localStorage.setItem('product',JSON.stringify(item))
+                        }}/>
                 </div>
               </div>):
               category.map(item =>
               <div className="card" key={item.id}>
-                <img src={item.thumbnail} alt="" onClick={()=> navigate(`/products/${item.id}`)}/>
+                <img src={item.thumbnail} alt="" onClick={()=> {
+                          navigate(`/products/${item.id}`)
+                          setProduct(item)
+                          localStorage.setItem('product',JSON.stringify(item))
+                        }}/>
                 <p>$ {item.price}</p>
                 <h5>{item.title}</h5>
-                  <BiShow className="icon" onClick={()=> navigate(`/products/${item.id}`)}/>
+                  <BiShow className="icon" onClick={()=> {
+                          navigate(`/products/${item.id}`)
+                          setProduct(item)
+                          localStorage.setItem('product',JSON.stringify(item))
+                        }}/>
               </div>)}
               </div>
         </div>
